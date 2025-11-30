@@ -15,6 +15,7 @@ const HTML_PAGE = `
     <title data-i18n="page.title">VoiceCraft - AI-Powered Voice Processing Platform</title>
     <meta name="description" content="" data-i18n-content="page.description">
     <meta name="keywords" content="" data-i18n-content="page.keywords">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%232563eb;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%233b82f6;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23grad)'/%3E%3Cg transform='translate(50,50)'%3E%3Ccircle cx='0' cy='-5' r='12' fill='none' stroke='white' stroke-width='4'/%3E%3Cpath d='M -8,-5 L -8,8 M 8,-5 L 8,8' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M -12,8 L 12,8' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M -6,12 L 0,18 L 6,12' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M -18,15 Q 0,22 18,15' stroke='white' stroke-width='3.5' stroke-linecap='round' fill='none'/%3E%3Cpath d='M -22,15 Q 0,28 22,15' stroke='white' stroke-width='3' stroke-linecap='round' fill='none' opacity='0.85'/%3E%3Cpath d='M -26,15 Q 0,34 26,15' stroke='white' stroke-width='2.5' stroke-linecap='round' fill='none' opacity='0.7'/%3E%3C/g%3E%3C/svg%3E">
     <style>
         :root {
             --primary-color: #2563eb;
@@ -1220,10 +1221,6 @@ const HTML_PAGE = `
                                     <span>✏️</span>
                                     <span>编辑文本</span>
                                 </button>
-                                <button type="button" class="btn-secondary" id="useForTtsBtn">
-                                    <span>🎙️</span>
-                                    <span>转为语音</span>
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -2011,25 +2008,6 @@ const HTML_PAGE = `
                 transcriptionText.readOnly = true;
                 this.innerHTML = '<span>✏️</span><span>编辑文本</span>';
             }
-        });
-
-        // 转为语音功能
-        document.getElementById('useForTtsBtn').addEventListener('click', function() {
-            const transcriptionText = document.getElementById('transcriptionText').value;
-            
-            if (!transcriptionText.trim()) {
-                alert('转录结果为空，无法转换为语音');
-                return;
-            }
-            
-            // 切换到TTS模式
-            switchMode('tts');
-            
-            // 将转录文本填入TTS文本框
-            document.getElementById('text').value = transcriptionText;
-            
-            // 滚动到TTS区域
-            document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth' });
         });
 
         // 初始化国际化
@@ -2900,4 +2878,3 @@ async function handleAudioTranscription(request) {
         });
     }
 }
-
